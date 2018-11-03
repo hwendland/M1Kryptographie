@@ -3,11 +3,13 @@
 #include <vector>
 #include <fstream>
 #include <ostream>
-#include <map>
 using namespace std;
 
 class NBild
 {
+    vector<string> import(const string filename);
+    size_t nrows;
+    size_t ncols;
 
 public:
     NBild(const string infile) {
@@ -17,15 +19,16 @@ public:
     }
 
     vector<string> image;
+    size_t getRows() {return this->nrows;}
+    size_t getCols() {return this->ncols;}
 
-    char operator() (int i, int j) const;
-    char &operator() (int i, int j);
-
-    vector<string> import(const string filename);
     void writeToFile(string outfile);
 
-    size_t nrows;
-    size_t ncols;
+    char operator() (size_t i, size_t j) const;
+    char &operator() (size_t i, size_t j);
+
+    void setPixel(size_t i, size_t j, int value);
+    char getPixel(size_t i, size_t j);
 };
 
 #endif // NBILD_H

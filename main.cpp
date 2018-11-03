@@ -5,11 +5,15 @@ using namespace std;
 
 int main()
 {
-    string filename = "../M1Kryptographie/test.txt";
+    string filename = "../test.txt";
 
     NBild test = NBild(filename);
-    cout << test.nrows << endl;
-    test.writeToFile("../M1Kryptographie/outTest.txt");
+    cout << test.getRows() << endl;
+    cout << test.getCols() << endl;
+    cout << test.getPixel(0, 1) << endl;
+    test.setPixel(0,1,1);
+    test.writeToFile("../outTest.txt");
+    cout << test.getPixel(0,1) << endl;
 
     return 0; // main will always return int, if left out it will return 0 meaning that no errors occured during execution)
 }
