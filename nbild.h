@@ -7,7 +7,12 @@ using namespace std;
 
 class NBild
 {
-    vector<string> import(const string filename);
+    vector<vector<int>> import(const string filename);
+    int toInt(char x);
+    vector<int> toIntVec(string line);
+
+
+
     size_t nrows;
     size_t ncols;
 
@@ -18,17 +23,19 @@ public:
         this->ncols = this->image[0].size();
     }
 
-    vector<string> image;
+    vector<vector<int>> image;
     size_t getRows() {return this->nrows;}
     size_t getCols() {return this->ncols;}
 
     void writeToFile(string outfile);
 
-    char operator() (size_t i, size_t j) const;
-    char &operator() (size_t i, size_t j);
+    int operator() (size_t i, size_t j) const;
+    int &operator() (size_t i, size_t j);
 
     void setPixel(size_t i, size_t j, int value);
     char getPixel(size_t i, size_t j);
+
+
 };
 
 #endif // NBILD_H
