@@ -7,7 +7,9 @@ int main()
 {
     string filename = "../test.txt";
 
-    NBild test = NBild(filename);
+    NBild test = NBild();
+    cout << test.getRows() << endl;
+    test.import(filename);
     cout << test.getRows() << endl;
     cout << test.getCols() << endl;
 

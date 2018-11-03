@@ -21,7 +21,7 @@ void NBild::writeToFile(string outfile) {
 }
 
 
-vector<vector<int>> NBild::import(const string filename) {
+void NBild::import(const string filename) {
     ifstream myfile;
     string line;
     vector<vector<int>> image;
@@ -34,7 +34,9 @@ vector<vector<int>> NBild::import(const string filename) {
         }
     }
     myfile.close();
-    return image;
+    this->image = image;
+    this->nrows = this->image.size();
+    this->ncols = this->image[0].size();
 }
 
 int NBild::toInt(char x) {
