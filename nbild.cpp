@@ -3,7 +3,6 @@
 #include <string>
 using namespace std;
 
-
 void NBild::writeToFile(string outfile) {
     ofstream myOutfile;
     myOutfile.open(outfile, ios::out);
@@ -60,6 +59,19 @@ int NBild::operator() (size_t i, size_t j) const {
 int& NBild::operator() (size_t i, size_t j) {
     return this->image[i][j];
 };
+
+vector<vector<int>> NBild::getRandomImage(size_t nrows, size_t ncols) {
+    vector<vector<int>> randomImage;
+    for (size_t i=0; i<nrows; i++) {
+        vector<int> randomInts;
+        for (size_t j = 0; j < ncols; j++) {
+            int randInt = rand() % 2;
+            randomInts.emplace_back(randInt);
+        }
+       randomImage.emplace_back(randomInts);
+    }
+    return randomImage;
+}
 
 
 

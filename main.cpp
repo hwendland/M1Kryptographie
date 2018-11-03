@@ -7,14 +7,10 @@ int main()
 {
     string filename = "../test.txt";
 
-    NBild test = NBild();
-    cout << test.getRows() << endl;
-    test.import(filename);
+    NBild test = NBild(5,5);
     cout << test.getRows() << endl;
     cout << test.getCols() << endl;
 
-    cout << test(0,1) << endl;
-    test(0,1) = 1;
     cout << test(0,1) << endl;
     test.writeToFile("../outTest.txt");
 

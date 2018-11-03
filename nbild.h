@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <ostream>
+#include <stdlib.h>
 using namespace std;
 
 class NBild
@@ -13,8 +14,15 @@ class NBild
     size_t nrows = 0;
     size_t ncols = 0;
 
+    vector<vector<int>> getRandomImage(size_t nrows, size_t ncols);
+
 public:
     NBild() {}
+    NBild(size_t nrows, size_t ncols) {
+        this->image = getRandomImage(nrows, ncols);
+        this->ncols = ncols;
+        this->nrows = nrows;
+    }
 
     vector<vector<int>> image;
     size_t getRows() {return this->nrows;}
