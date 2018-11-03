@@ -5,11 +5,11 @@ using namespace std;
 
 int main()
 {
-    string filename = "beispielbild_1.txt";
+    string filename = "../M1Kryptographie/test.txt";
+
     NBild test = NBild(filename);
-    test.import();
-    cout << test(0,0);
-    cout << test.nrows;
+    cout << test.nrows << endl;
+    test.writeToFile("../M1Kryptographie/outTest.txt");
 
     return 0; // main will always return int, if left out it will return 0 meaning that no errors occured during execution)
 }
@@ -20,3 +20,5 @@ void visualcrypt()
    cout << "Enter path";
    cin >> filename;
 }
+
+

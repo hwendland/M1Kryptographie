@@ -2,53 +2,40 @@
 #include <iostream>
 using namespace std;
 
-vector< vector<NBild::color> > NBild::import()
-{
-    vector< string > rawData;
-    string line;
-    while (  getline(myfile, line) ) {
-        cout << line;
-        rawData.emplace_back(line);
-    }
-    myfile.close();
-    return toColor(rawData);
-};
 
-int NBild::writeToFile(string outfile) {
+void NBild::writeToFile(string outfile) {
     ofstream myOutfile;
-    myOutfile.open(outfile);
-    myOutfile << data.data();
+    myOutfile.open(outfile, ios::out);
+    cout << this->nrows;
+    for (size_t i = 0; i < this->nrows; i++) {
+        myOutfile << this->image[i] << endl;
+        cout << "wrote line" << i << endl;
+    }
     myOutfile.close();
-    return 0;
 }
 
-NBild::color NBild::operator() (size_t i, size_t j) const {
-    return data[i][j];
-}
 
-NBild::color& NBild::operator() (size_t i, size_t j) {
-    return data[i][j];
-}
-
-NBild::color NBild::toColor(char x) {
-    if (x == '0') return color::white;
-    else if (x == '1') return color::white;
-    else throw new exception;
-}
-
-vector<NBild::color> NBild::toColor(string vec) {
-    vector<NBild::color> colorVec;
-    for (size_t i = 0; i < vec.size();) {
-        colorVec.push_back(toColor(vec[i]));
+vector<string> NBild::import(const string filename) {
+    ifstream myfile;
+    string line;
+    vector<string> image;
+    myfile.open(filename);
+    bool open = myfile.is_open();
+    if (open)  {
+        cout << "Open" << endl;
+        while (myfile >> line) {
+            image.emplace_back(line);
+        }
     }
-    return colorVec;
+    return image;
 }
 
-vector< vector<NBild::color> > NBild::toColor(vector< string> data) {
-    vector< vector<NBild::color> > colorData;
-    for (size_t i = 0; i < data.size();) {
-        colorData.push_back(toColor(data[i]));
-    }
-    return colorData;
-}
+//char NBild::operator() (int i, int j) const {
+//    return this->image[static_cast<size_t>(i)][static_cast<size_t>(j)];
+//};
+//char& NBild::operator() (int i, int j) {
+//    return this->image[static_cast<size_t>(i)][static_cast<size_t>(j)];
+//};
+
+
 

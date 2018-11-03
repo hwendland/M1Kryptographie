@@ -8,30 +8,24 @@ using namespace std;
 
 class NBild
 {
-    ifstream myfile;
-
-    enum color { black = 1, white = 0 };
-
-    vector< vector<color> > data;
-
-    vector< vector<color> > toColor(vector< string >);
-    vector<color> toColor(string);
-    color toColor(char);
 
 public:
     NBild(const string infile) {
-        myfile.open(infile, ios::in);
-        this->import();
+        this->image = import(infile);
+        this->nrows = this->image.size();
+        this->ncols = this->image[0].size();
     }
 
-    color operator() (size_t i, size_t j) const;
-    color &operator() (size_t i, size_t j);
+    vector<string> image;
 
-    vector< vector<color> > import();
-    int writeToFile(string outfile);
+    char operator() (int i, int j) const;
+    char &operator() (int i, int j);
 
-    const size_t nrows = data.size();
-    const size_t ncols = data[0].size();
+    vector<string> import(const string filename);
+    void writeToFile(string outfile);
+
+    size_t nrows;
+    size_t ncols;
 };
 
 #endif // NBILD_H
