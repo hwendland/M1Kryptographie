@@ -20,8 +20,14 @@ public:
     void import(const string filename);
     void writeToFile(NBild imageToWrite, string outfile);
 
-    void encode();
-    void decode();
+    NBild encode(NBild source_image);
+    NBild overlay(NBild image1, NBild image2);
+
+    NBild create_enc_image(size_t ncols, size_t nrows);
+
+    NBild decode(NBild source_image);
+
+
 };
 
 #endif // CBILD_H

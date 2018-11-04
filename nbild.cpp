@@ -39,7 +39,7 @@ void NBild::import(const string filename) {
 }
 
 int NBild::toInt(char x) {
-    assert(x == '0' | x == '1');
+//    assert(x == '0' | x == '1');
     if (x == '0') return 0;
     else return 1;
 }
