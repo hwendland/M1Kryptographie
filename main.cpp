@@ -3,6 +3,7 @@
 #include <string>
 #include "nbild.h"
 #include "cbild.h"
+#include <cstdlib>
 
 using namespace std;
 
@@ -28,7 +29,10 @@ void consoleprogramm(){
     if(user_input_vec[0] == "help"){
         cout << "visualcrypt encode <source> <result> <key>" << endl
              << "visualcrypt decode <image_a> <result> <key>" << endl
-             << "visualcrypt overlay <image_a> <image_b> <result>" << endl;
+             << "visualcrypt overlay <image_a> <image_b> <result>" << endl
+             << "exit" << endl;
+    } else if(user_input_vec[0] == "exit"){
+        exit(0);
     } else if ((user_input_vec.size() == 5) && (user_input_vec[0] == "visualcrypt")){
         if (user_input_vec[1] == "encode"){
             CBild crypt = CBild(user_input[4]);
