@@ -16,7 +16,7 @@ class NBild
     vector<vector<int>> getRandomImage(size_t nrows, size_t ncols);
 
 public:
-    NBild() {}
+    NBild(): NBild(1,1){}
     NBild(size_t nrows, size_t ncols) {
         this->image = getRandomImage(nrows, ncols);
         this->ncols = ncols;
