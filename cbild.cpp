@@ -12,13 +12,13 @@ void CBild::writeToFile(NBild imageToWrite, string outfile) {
 
 NBild CBild::encode(NBild source_image){
     // Matrix(row, cols)
-    int ncols = source_image.ncols;
-    int nrows = source_image.nrows;
+    size_t ncols = source_image.ncols;
+    size_t nrows = source_image.nrows;
 
     NBild encoded_image = NBild(nrows *2,ncols*2);
 
-    for(int i_row = 0; i_row < nrows; i_row++){
-        for(int i_col = 0; i_col < ncols; i_col++){
+    for(size_t i_row = 0; i_row < nrows; i_row++){
+        for(size_t i_col = 0; i_col < ncols; i_col++){
             if ((source_image(i_row, i_col) == 0)==(this->key == 'A')){
                 encoded_image(i_row*2, i_col*2) = 0;
                 encoded_image(i_row*2+1, i_col*2+1) = 0;
@@ -42,8 +42,8 @@ NBild CBild::overlay(NBild image1, NBild image2){
 
     NBild result_image = NBild(nrows, ncols);
 
-    for(int i_row = 0; i_row < nrows; i_row++){
-        for(int i_col = 0; i_col < ncols; i_col++){
+    for(size_t i_row = 0; i_row < nrows; i_row++){
+        for(size_t i_col = 0; i_col < ncols; i_col++){
             if ((image1(i_row,i_col) == 1)&&(image2(i_row,i_col) == 1)){
                 result_image(i_row,i_col) = 1;
             } else {
@@ -57,8 +57,8 @@ NBild CBild::overlay(NBild image1, NBild image2){
 
 NBild CBild::create_enc_image(size_t ncols, size_t nrows){
     NBild result_image = NBild(2*nrows, 2*ncols);
-    for(int i_row = 0; i_row < 2*nrows; i_row++){
-        for(int i_col = 0; i_col < 2*ncols; i_col++){
+    for(size_t i_row = 0; i_row < 2*nrows; i_row++){
+        for(size_t i_col = 0; i_col < 2*ncols; i_col++){
             if ((i_row % 2 == 1) == (i_col % 2 == 1) == (this->key == 'A')){
                 result_image(i_row, i_col) = 1;
             } else {

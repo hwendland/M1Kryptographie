@@ -7,12 +7,11 @@
 
 using namespace std;
 
-void consoleprogramm(){
+void visualcrypt(){
     string user_input;
     vector<string> user_input_vec;
     cout << ">>> ";
     getline(cin, user_input);
-
 
     string delimiter = " ";
 
@@ -24,7 +23,6 @@ void consoleprogramm(){
         user_input.erase(0, pos + delimiter.length());
     }
     user_input_vec.emplace_back(user_input);
-
 
     if(user_input_vec[0] == "help"){
         cout << "visualcrypt encode <source> <result> <key>" << endl
@@ -38,25 +36,25 @@ void consoleprogramm(){
             CBild crypt = CBild(user_input[4]);
             NBild s_img;
             NBild r_img;
-            s_img.import(string("../")+user_input_vec[2]+string(".txt"));
+            s_img.import("../"+user_input_vec[2]+".txt");
             r_img = crypt.encode(s_img);
-            r_img.writeToFile(string("../")+user_input_vec[3]+string(".txt"));
+            r_img.writeToFile("../"+user_input_vec[3]+".txt");
         } else if (user_input_vec[1] == "decode"){
             CBild crypt = CBild(user_input[4]);
             NBild s_img;
             NBild r_img;
-            s_img.import(string("../")+user_input_vec[2]+string(".txt"));
+            s_img.import("../"+user_input_vec[2]+".txt");
             r_img = crypt.decode(s_img);
-            r_img.writeToFile(string("../")+user_input_vec[3]+string(".txt"));
+            r_img.writeToFile("../"+user_input_vec[3]+".txt");
         } else if (user_input_vec[1] == "overlay"){
             CBild crypt = CBild('A');
             NBild img1;
             NBild img2;
             NBild r_img;
-            img1.import(string("../")+user_input_vec[2]+string(".txt"));
-            img2.import(string("../")+user_input_vec[3]+string(".txt"));
+            img1.import("../"+user_input_vec[2]+".txt");
+            img2.import("../"+user_input_vec[3]+".txt");
             r_img = crypt.overlay(img1, img2);
-            r_img.writeToFile(string("../")+user_input_vec[4]+string(".txt"));
+            r_img.writeToFile("../"+user_input_vec[4]+".txt");
         }
     } else {
         cout << "invalid input" << endl;
@@ -85,18 +83,8 @@ int main()
 
     //a.create_enc_image(5,5).writeToFile("../outTest.txt");
     while(true){
-        consoleprogramm();
+        visualcrypt();
     }
-
-    return 0; // main will always return int, if left out it will return 0 meaning that no errors occured during execution)
 }
-
-void visualcrypt()
-{
-   string filename;
-   cout << "Enter path";
-   cin >> filename;
-}
-
 
 
