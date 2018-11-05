@@ -19,7 +19,7 @@ NBild CBild::encode(NBild source_image){
 
     for(size_t i_row = 0; i_row < nrows; i_row++){
         for(size_t i_col = 0; i_col < ncols; i_col++){
-            if ((source_image(i_row, i_col) == 0)==(this->key == 'A')){
+            if ((source_image(i_row, i_col) == 0)==(this->key == "A")){
                 encoded_image(i_row*2, i_col*2) = 0;
                 encoded_image(i_row*2+1, i_col*2+1) = 0;
                 encoded_image(i_row*2+1, i_col*2) = 1;
@@ -59,7 +59,7 @@ NBild CBild::create_enc_image(size_t ncols, size_t nrows){
     NBild result_image = NBild(2*nrows, 2*ncols);
     for(size_t i_row = 0; i_row < 2*nrows; i_row++){
         for(size_t i_col = 0; i_col < 2*ncols; i_col++){
-            if ((i_row % 2 == 1) == (i_col % 2 == 1) == (this->key == 'A')){
+            if ((i_row % 2 == 1) == (i_col % 2 == 1) == (this->key == "A")){
                 result_image(i_row, i_col) = 1;
             } else {
                 result_image(i_row, i_col) = 0;

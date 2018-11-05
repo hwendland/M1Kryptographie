@@ -4,6 +4,7 @@
 #include "nbild.h"
 #include "cbild.h"
 #include <cstdlib>
+#include "assert.h"
 
 using namespace std;
 
@@ -33,21 +34,21 @@ void visualcrypt(){
         exit(0);
     } else if ((user_input_vec.size() == 5) && (user_input_vec[0] == "visualcrypt")){
         if (user_input_vec[1] == "encode"){
-            CBild crypt = CBild(user_input[4]);
+            CBild crypt = CBild(user_input_vec[4]);
             NBild s_img;
             NBild r_img;
             s_img.import("../"+user_input_vec[2]+".txt");
             r_img = crypt.encode(s_img);
             r_img.writeToFile("../"+user_input_vec[3]+".txt");
         } else if (user_input_vec[1] == "decode"){
-            CBild crypt = CBild(user_input[4]);
+            CBild crypt = CBild(user_input_vec[4]);
             NBild s_img;
             NBild r_img;
             s_img.import("../"+user_input_vec[2]+".txt");
             r_img = crypt.decode(s_img);
             r_img.writeToFile("../"+user_input_vec[3]+".txt");
         } else if (user_input_vec[1] == "overlay"){
-            CBild crypt = CBild('A');
+            CBild crypt = CBild("A");
             NBild img1;
             NBild img2;
             NBild r_img;
@@ -55,6 +56,8 @@ void visualcrypt(){
             img2.import("../"+user_input_vec[3]+".txt");
             r_img = crypt.overlay(img1, img2);
             r_img.writeToFile("../"+user_input_vec[4]+".txt");
+        } else {
+            cout << "invalid input" << endl;
         }
     } else {
         cout << "invalid input" << endl;
@@ -63,27 +66,40 @@ void visualcrypt(){
 
 int main()
 {
-    string filename = "../beispielbild_2.txt";
+//    string filename = "../beispielbild_2.txt";
 
-    NBild test; //= NBild(10,20);
-    NBild test2 = NBild(5,6);
+//    NBild test; //= NBild(10,20);
+//    NBild test2 = NBild(5,6);
 
-    NBild b;
-    test.import(filename);
-    cout << test.getRows() << endl;
-    cout << test.getCols() << endl;
+//    NBild b;
 
-    cout << test(0,1) << endl;
-    test.writeToFile("../outTest1.txt");
-    test2.writeToFile("../outTest2.txt");
+//    test.import(filename);
 
-    CBild a = CBild('B');
+//    cout << test.getRows() << endl;
+//    cout << test.getCols() << endl;
 
-    a.decode(a.encode(test)).writeToFile("../outTest.txt");
+//    cout << test(0,1) << endl;
+//    test.writeToFile("../outTest1.txt");
+//    test2.writeToFile("../outTest2.txt");
 
-    //a.create_enc_image(5,5).writeToFile("../outTest.txt");
+//    CBild a = CBild("A");
+
+//    a.decode(a.encode(test)).writeToFile("../outTest.txt");
+
+//    a.create_enc_image(5,5).writeToFile("../outTest.txt");
     while(true){
-        visualcrypt();
+        try {
+            visualcrypt();
+        } catch (int e) {
+            if (e == 0){
+                cout << "invalid input" << endl;
+            } else if (e == 1){
+                cout << "input file doesnt exist" << endl;
+            } else if (e == 2) {
+                cout << "invalid key" << endl;
+            }
+        }
+
     }
 }
 

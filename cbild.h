@@ -9,11 +9,15 @@ class CBild
     vector<vector<int>> B = {{1,0},{0,1}};
 
 public:
-    CBild(char key) {
-        this->key = key;
+    CBild(string key) {
+        if (key == "A"|key == "B"){
+            this->key = key;
+        } else {
+            throw 2;
+        }
     }
 
-    char key;
+    string key;
     NBild originalImage;
     NBild encodedImage;
 

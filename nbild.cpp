@@ -29,8 +29,15 @@ void NBild::import(const string filename) {
     if (open)  {
         cout << "Starting import" << endl;
         while (myfile >> line) {
-            image.emplace_back(toIntVec(line));
+            try {
+                image.emplace_back(toIntVec(line));
+            } catch (exception) {
+                image = {{}};
+                throw;
+            }
         }
+    } else {
+        throw 1; //file doesnt exist
     }
     myfile.close();
     this->image = image;
@@ -39,9 +46,13 @@ void NBild::import(const string filename) {
 }
 
 int NBild::toInt(char x) {
-//    assert(x == '0' | x == '1');
-    if (x == '0') return 0;
-    else return 1;
+    if (!(x == '0' | x == '1')){
+        throw 0; // isnt 0 or 1
+    } else if (x == '0') {
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 vector<int> NBild::toIntVec(string line) {
