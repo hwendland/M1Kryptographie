@@ -36,25 +36,25 @@ void visualcrypt(){
             CBild crypt = CBild(user_input_vec[4]);
             NBild s_img;
             NBild r_img;
-            s_img.import("../"+user_input_vec[2]+".txt");
+            s_img.import(user_input_vec[2]);
             r_img = crypt.encode(s_img);
-            r_img.writeToFile("../"+user_input_vec[3]+".txt");
+            r_img.writeToFile(user_input_vec[3]);
         } else if (user_input_vec[1] == "decode"){
             CBild crypt = CBild(user_input_vec[4]);
             NBild s_img;
             NBild r_img;
-            s_img.import("../"+user_input_vec[2]+".txt");
+            s_img.import(user_input_vec[2]);
             r_img = crypt.decode(s_img);
-            r_img.writeToFile("../"+user_input_vec[3]+".txt");
+            r_img.writeToFile(user_input_vec[3]);
         } else if (user_input_vec[1] == "overlay"){
             CBild crypt = CBild("A");
             NBild img1;
             NBild img2;
             NBild r_img;
-            img1.import("../"+user_input_vec[2]+".txt");
-            img2.import("../"+user_input_vec[3]+".txt");
+            img1.import(user_input_vec[2]);
+            img2.import(user_input_vec[3]);
             r_img = crypt.overlay(img1, img2);
-            r_img.writeToFile("../"+user_input_vec[4]+".txt");
+            r_img.writeToFile(user_input_vec[4]);
         } else {
             cout << "invalid input" << endl;
         }
@@ -65,27 +65,6 @@ void visualcrypt(){
 
 int main()
 {
-//    string filename = "../beispielbild_2.txt";
-
-//    NBild test; //= NBild(10,20);
-//    NBild test2 = NBild(5,6);
-
-//    NBild b;
-
-//    test.import(filename);
-
-//    cout << test.getRows() << endl;
-//    cout << test.getCols() << endl;
-
-//    cout << test(0,1) << endl;
-//    test.writeToFile("../outTest1.txt");
-//    test2.writeToFile("../outTest2.txt");
-
-//    CBild a = CBild("A");
-
-//    a.decode(a.encode(test)).writeToFile("../outTest.txt");
-
-//    a.create_enc_image(5,5).writeToFile("../outTest.txt");
     while(true){
         try {
             visualcrypt();

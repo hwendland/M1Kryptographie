@@ -42,8 +42,8 @@ void NBild::import(const string filename) {
     this->image = image;
     this->nrows = this->image.size();
     this->ncols = this->image[0].size();
-    for (auto& vec : image) {
-        if (vec.size() != ncols) throw 0;
+    for (size_t i = 1; i < nrows; i++) {
+        if (image[i].size() != ncols) throw 0;
     }
 }
 
