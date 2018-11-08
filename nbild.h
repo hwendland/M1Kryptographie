@@ -11,8 +11,6 @@ class NBild
     int toInt(char x);
     vector<int> toIntVec(string line);
 
-
-
     vector<vector<int>> getRandomImage(size_t nrows, size_t ncols);
 
 public:

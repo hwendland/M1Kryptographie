@@ -4,7 +4,6 @@
 #include "nbild.h"
 #include "cbild.h"
 #include <cstdlib>
-#include "assert.h"
 
 using namespace std;
 
