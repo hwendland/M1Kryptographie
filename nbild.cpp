@@ -1,7 +1,13 @@
 #include "nbild.h"
 #include <iostream>
 #include <string>
+#include <random>
+
 using namespace std;
+
+static random_device rd;
+static mt19937 gen(rd());
+static uniform_int_distribution<int> dis(0, 1);
 
 void NBild::writeToFile(string outfile) {
     ofstream myOutfile;
@@ -78,13 +84,10 @@ vector<vector<int>> NBild::getRandomImage(size_t nrows, size_t ncols) {
     for (size_t i=0; i<nrows; i++) {
         vector<int> randomInts;
         for (size_t j = 0; j < ncols; j++) {
-            int randInt = rand() % 2;
+            int randInt = dis(gen);
             randomInts.emplace_back(randInt);
         }
        randomImage.emplace_back(randomInts);
     }
     return randomImage;
 }
-
-
-
