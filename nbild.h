@@ -1,9 +1,11 @@
 #ifndef NBILD_H
 #define NBILD_H
+
 #include <vector>
 #include <fstream>
 #include <ostream>
 #include <stdlib.h>
+
 using namespace std;
 
 class NBild
@@ -11,7 +13,7 @@ class NBild
     int toInt(char x);
     vector<int> toIntVec(string line);
 
-    vector<vector<int>> getRandomImage(size_t nrows, size_t ncols);
+
 
 public:
     NBild(): NBild(1,1){}
@@ -20,6 +22,8 @@ public:
         this->ncols = ncols;
         this->nrows = nrows;
     }
+
+    vector<vector<int>> getRandomImage(size_t nrows, size_t ncols);
 
     vector<vector<int>> image;
     size_t getRows() {return this->nrows;}

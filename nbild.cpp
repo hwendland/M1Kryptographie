@@ -74,10 +74,10 @@ vector<int> NBild::toIntVec(string line) {
 
 int NBild::operator() (size_t i, size_t j) const {
     return this->image[i][j];
-};
+}
 int& NBild::operator() (size_t i, size_t j) {
     return this->image[i][j];
-};
+}
 
 vector<vector<int>> NBild::getRandomImage(size_t nrows, size_t ncols) {
     vector<vector<int>> randomImage;
@@ -89,5 +89,6 @@ vector<vector<int>> NBild::getRandomImage(size_t nrows, size_t ncols) {
         }
        randomImage.emplace_back(randomInts);
     }
+    this->image = randomImage;
     return randomImage;
 }
