@@ -7,6 +7,9 @@
 
 using namespace std;
 
+/*!
+ * @brief a little console for accessing the functionality of the crytography
+ */
 void visualcrypt(){
     string user_input;
     vector<string> user_input_vec;

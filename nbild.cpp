@@ -10,7 +10,14 @@ static random_device rd;
 static mt19937 gen(rd());
 static uniform_int_distribution<int> dis(0, 1);
 
-// Random image generation (used to initialize image with fixed size)
+/*!
+ * @brief Random image generation (used to initialize image with fixed size)
+ *
+ * @param nrows number of rows
+ * @param ncols number of columns
+ *
+ * @return random NBild
+ */
 vector<vector<int>> NBild::getRandomImage(size_t nrows, size_t ncols) {
     vector<vector<int>> randomImage;
     for (size_t i=0; i<nrows; i++) {
@@ -25,7 +32,9 @@ vector<vector<int>> NBild::getRandomImage(size_t nrows, size_t ncols) {
     return randomImage;
 }
 
-// File export
+/*!
+ * @brief File export
+ */
 void NBild::writeToFile(string outfile) {
     ofstream myOutfile;
     myOutfile.open(outfile, ios::out);
@@ -42,7 +51,9 @@ void NBild::writeToFile(string outfile) {
     myOutfile.close();
 }
 
-// File import
+/*!
+ * @brief File import
+ */
 void NBild::import(const string filename) {
     ifstream myfile;
     string line;
@@ -71,7 +82,13 @@ void NBild::import(const string filename) {
     }
 }
 
-// Utility function for safe conversion from char to int during import
+/*!
+ * @brief Utility function for safe conversion from char to int during import
+ *
+ * @param x char that is checked
+ *
+ * @return converted char
+ */
 int NBild::toInt(char x) {
     if (!(x == '0' | x == '1')){
         throw 0;
@@ -82,7 +99,14 @@ int NBild::toInt(char x) {
     }
 }
 
-// Utility function to convert a string into a vector of integers
+
+/*!
+ * @brief Utility function to convert a string into a vector of integers
+ *
+ * @param line line that is going to be converted
+ *
+ * @return converted file
+ */
 vector<int> NBild::toIntVec(string line) {
     vector<int> lineVec;
     for (size_t j=0; j < line.size(); j++) {
@@ -92,10 +116,26 @@ vector<int> NBild::toIntVec(string line) {
     return lineVec;
 }
 
-// Read and write access for image fields
+/*!
+ * @brief Read and write access for image fields
+ *
+ * @param i row
+ * @param j column
+ *
+ * @return accessed value
+ */
 int NBild::operator() (size_t i, size_t j) const {
     return this->image[i][j];
 }
+
+/*!
+ * @brief Read and write access for image fields
+ *
+ * @param i row
+ * @param j column
+ *
+ * @return accessed value
+ */
 int& NBild::operator() (size_t i, size_t j) {
     return this->image[i][j];
 }
