@@ -13,12 +13,11 @@ class NBild
     int toInt(char x);
     vector<int> toIntVec(string line);
 
-
-
 public:
+    // Constructors
     NBild(): NBild(1,1){}
     NBild(size_t nrows, size_t ncols) {
-        this->image = getRandomImage(nrows, ncols);
+        this->image = getRandomImage(nrows, ncols); // initialize with random image
         this->ncols = ncols;
         this->nrows = nrows;
     }
@@ -32,6 +31,7 @@ public:
     void writeToFile(string outfile);
     void import(const string filename);
 
+    // read and write access to fields
     int operator() (size_t i, size_t j) const;
     int &operator() (size_t i, size_t j);
 

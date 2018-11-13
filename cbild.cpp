@@ -35,7 +35,6 @@ NBild CBild::encode(NBild source_image){
     return(encoded_image);
 }
 
-
 NBild CBild::overlay(NBild image1, NBild image2){
     size_t ncols = image1.ncols;
     size_t nrows = image1.nrows;

@@ -5,10 +5,12 @@
 
 class CBild
 {
+    // Keys
     vector<vector<int>> A = {{0,1},{1,0}};
     vector<vector<int>> B = {{1,0},{0,1}};
 
 public:
+    // Constructor
     CBild(string key) {
         if (key == "A"|key == "B"){
             this->key = key;
@@ -30,8 +32,6 @@ public:
     NBild create_enc_image(size_t ncols, size_t nrows);
 
     NBild decode(NBild source_image);
-
-
 };
 
 #endif // CBILD_H

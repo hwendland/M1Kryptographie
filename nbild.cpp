@@ -5,10 +5,27 @@
 
 using namespace std;
 
+// Set up random number generator for random image generation
 static random_device rd;
 static mt19937 gen(rd());
 static uniform_int_distribution<int> dis(0, 1);
 
+// Random image generation (used to initialize image with fixed size)
+vector<vector<int>> NBild::getRandomImage(size_t nrows, size_t ncols) {
+    vector<vector<int>> randomImage;
+    for (size_t i=0; i<nrows; i++) {
+        vector<int> randomInts;
+        for (size_t j = 0; j < ncols; j++) {
+            int randInt = dis(gen);
+            randomInts.emplace_back(randInt);
+        }
+       randomImage.emplace_back(randomInts);
+    }
+    this->image = randomImage;
+    return randomImage;
+}
+
+// File export
 void NBild::writeToFile(string outfile) {
     ofstream myOutfile;
     myOutfile.open(outfile, ios::out);
@@ -25,6 +42,7 @@ void NBild::writeToFile(string outfile) {
     myOutfile.close();
 }
 
+// File import
 void NBild::import(const string filename) {
     ifstream myfile;
     string line;
@@ -53,9 +71,10 @@ void NBild::import(const string filename) {
     }
 }
 
+// Utility function for safe conversion from char to int during import
 int NBild::toInt(char x) {
     if (!(x == '0' | x == '1')){
-        throw 0; // isnt 0 or 1
+        throw 0;
     } else if (x == '0') {
         return 0;
     } else {
@@ -63,6 +82,7 @@ int NBild::toInt(char x) {
     }
 }
 
+// Utility function to convert a string into a vector of integers
 vector<int> NBild::toIntVec(string line) {
     vector<int> lineVec;
     for (size_t j=0; j < line.size(); j++) {
@@ -72,23 +92,10 @@ vector<int> NBild::toIntVec(string line) {
     return lineVec;
 }
 
+// Read and write access for image fields
 int NBild::operator() (size_t i, size_t j) const {
     return this->image[i][j];
 }
 int& NBild::operator() (size_t i, size_t j) {
     return this->image[i][j];
-}
-
-vector<vector<int>> NBild::getRandomImage(size_t nrows, size_t ncols) {
-    vector<vector<int>> randomImage;
-    for (size_t i=0; i<nrows; i++) {
-        vector<int> randomInts;
-        for (size_t j = 0; j < ncols; j++) {
-            int randInt = dis(gen);
-            randomInts.emplace_back(randInt);
-        }
-       randomImage.emplace_back(randomInts);
-    }
-    this->image = randomImage;
-    return randomImage;
 }
